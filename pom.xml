@@ -12,10 +12,6 @@
 	<dependencies>
 		<dependency>
 			<groupId>nabu.misc</groupId>
-			<artifactId>proxy</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>nabu.misc</groupId>
 			<artifactId>keystore</artifactId>
 		</dependency>
 	</dependencies>
