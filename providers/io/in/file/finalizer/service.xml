@@ -1,0 +1,62 @@
+<sequence id="91eed375-fa42-4852-a31d-9d277346c399">
+	<map id="d2b68779ef41440081973bf990a4e05a">
+		<invoke id="7f00dfacba9b41a4b747b0450cc55712"
+			resultName="result82f46e466c75460d9a67cd558c15798a"
+			serviceId="nabu.protocols.ftp.client.Services.connect"
+			x="58"
+			y="91">
+			<link id="07a6c23aecf0463d99d20e2ce08c7a58">
+				<from>input/properties/host</from>
+				<to>host</to>
+			</link>
+			<link id="dc307923ceb24aa487a4097e88c7f465">
+				<from>input/properties/port</from>
+				<to>port</to>
+			</link>
+			<link id="a59c2ad593984d32b2fbda19ddb6ebef">
+				<from>input/properties/username</from>
+				<to>username</to>
+			</link>
+			<link id="8c491443c0454f389fc63167a4646649">
+				<from>input/properties/password</from>
+				<to>password</to>
+			</link>
+		</invoke>
+		<link id="55f3ca5b4aed406abd096adbba6891fb">
+			<from>result82f46e466c75460d9a67cd558c15798a/connection</from>
+			<to>connection</to>
+		</link>
+	</map>
+	<for id="9421fbc8-5d6d-40e6-ae8d-25dd50da6c58"
+		variable="result">
+		<map id="2e38338f775343fb8478610fdde86b43">
+			<invoke id="49235db1d772411da8f2abd6b40d1659"
+				resultName="resultd37b53b092f343e7905a79d51abd3a9b"
+				serviceId="nabu.protocols.ftp.client.providers.io.in.file.singleFinalize"
+				x="153"
+				y="49">
+				<link id="1ce006c3b8144f13b4056d3c1cff7e8c">
+					<from>result</from>
+					<to>results[0]</to>
+				</link>
+				<link id="1b382134172846c4a3bd05cbee4d0cd5">
+					<from>input/properties/uri</from>
+					<to>properties/uri</to>
+				</link>
+				<link id="75c07cca31424447ac18acd44b6b1ecc">
+					<from>input/properties/deleteOriginal</from>
+					<to>properties/deleteOriginal</to>
+				</link>
+				<link id="6863bbf4d64f4f02accb72324c411666">
+					<from>input/properties/processedExtension</from>
+					<to>properties/processedExtension</to>
+				</link>
+				<link id="b848665a356347c3a04752f23a8256c6">
+					<from>connection/connectionId</from>
+					<to>properties/connectionId</to>
+				</link>
+			</invoke>
+		</map>
+		<query>input/results</query>
+	</for>
+</sequence>

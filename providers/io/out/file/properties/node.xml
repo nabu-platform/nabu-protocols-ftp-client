@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<node artifactManager="be.nabu.eai.module.types.structure.StructureManager" created="2023-05-24T14:47:12.364+02:00" lastModified="2025-12-01T15:19:52.224+01:00" leaf="true" version="8">
+    <environmentId>ares</environmentId>
+    <hidden>false</hidden>
+    <locked>false</locked>
+    <properties/>
+    <references>nabu.protocols.ftp.client.providers.io.basicProperties</references>
+    <references>java.net.URI</references>
+    <references>java.lang.String</references>
+</node>

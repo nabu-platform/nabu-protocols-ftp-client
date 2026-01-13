@@ -1,0 +1,69 @@
+<sequence id="5051a94a-1378-42aa-8b14-dc1f0a9bf246">
+	<map id="1195f22e-5bca-4050-a47e-b2434789ed10">
+		<invoke id="060691ffdc764a039d0784a5d7625193"
+			resultName="result8eb7e5366eab4d6b81749abb8bedce78"
+			serviceId="nabu.protocols.ftp.client.Services.connect"
+			x="159"
+			y="317">
+			<link id="e2ca3ed318ab4bed8d0a806e9643509f">
+				<from>input/properties/host</from>
+				<to>host</to>
+			</link>
+			<link id="0b770818c7ec4d249e96bcc9404a639e">
+				<from>input/properties/port</from>
+				<to>port</to>
+			</link>
+			<link id="7f6cab570bcf45279e595dfdd02f54ae">
+				<from>input/properties/username</from>
+				<to>username</to>
+			</link>
+			<link id="452610e96aa845d99daba96fb4264404">
+				<from>input/properties/password</from>
+				<to>password</to>
+			</link>
+		</invoke>
+		<invoke id="8819992c569945a38832c5400f20a789"
+			invocationOrder="1"
+			resultName="result3cffbbd12b7546d7a1a356fe36d374f2"
+			serviceId="nabu.protocols.ftp.client.providers.io.in.file.singleRead"
+			x="524"
+			y="12">
+			<link id="13a780ef6f69434ea279e5beae1c4d98">
+				<from>result8eb7e5366eab4d6b81749abb8bedce78/connection/connectionId</from>
+				<to>properties/connectionId</to>
+			</link>
+			<link id="b148458174de4034b3f7fe492d1f2bad">
+				<from>input/properties/uri</from>
+				<to>properties/uri</to>
+			</link>
+			<link id="79c1fb3c9c564848a4b93405b5dae173">
+				<from>input/properties/deleteOriginal</from>
+				<to>properties/deleteOriginal</to>
+			</link>
+			<link id="b8e2c43663724b81ad449a8290b079ff">
+				<from>input/properties/processedExtension</from>
+				<to>properties/processedExtension</to>
+			</link>
+			<link id="e9ba6ce5f9e94f799e49562f883ded1f">
+				<from>input/limit</from>
+				<to>limit</to>
+			</link>
+			<link id="680c2c3b593241bb934b4c7c7817dc6b">
+				<from>input/offset</from>
+				<to>offset</to>
+			</link>
+			<link id="807cac31ca68462aa819a8d6488ca359">
+				<from>input/context</from>
+				<to>context</to>
+			</link>
+		</invoke>
+		<link id="88c5d0dd0b8a469d9010e801f03d0678">
+			<from>result3cffbbd12b7546d7a1a356fe36d374f2/limited</from>
+			<to>output/limited</to>
+		</link>
+		<link id="db179064de7f4a30bdde2362e3866ce2">
+			<from>result3cffbbd12b7546d7a1a356fe36d374f2/results</from>
+			<to>output/results</to>
+		</link>
+	</map>
+</sequence>

@@ -1,0 +1,144 @@
+<sequence id="c3ec679fe0af47cf9f182f5f5e83c2a7">
+	<map id="d2b68779ef41440081973bf990a4e05a">
+		<invoke id="7f00dfacba9b41a4b747b0450cc55712"
+			resultName="result82f46e466c75460d9a67cd558c15798a"
+			serviceId="nabu.protocols.ftp.client.Services.connect"
+			x="58"
+			y="91">
+			<link id="07a6c23aecf0463d99d20e2ce08c7a58">
+				<from>input/properties/host</from>
+				<to>host</to>
+			</link>
+			<link id="dc307923ceb24aa487a4097e88c7f465">
+				<from>input/properties/port</from>
+				<to>port</to>
+			</link>
+			<link id="a59c2ad593984d32b2fbda19ddb6ebef">
+				<from>input/properties/username</from>
+				<to>username</to>
+			</link>
+			<link id="8c491443c0454f389fc63167a4646649">
+				<from>input/properties/password</from>
+				<to>password</to>
+			</link>
+		</invoke>
+		<link id="f039050b34214800a59eca884c779e9c">
+			<from>result82f46e466c75460d9a67cd558c15798a/connection</from>
+			<to>connection</to>
+		</link>
+		<invoke id="87781792767e44898e1e1affee733487"
+			resultName="result649b3a52dd1347b69f7490f3bef5f96c"
+			serviceId="nabu.utils.Uri.toComponents"
+			x="177"
+			y="204">
+			<link id="7f9cdcecfc0b4625936390bf2a947f66">
+				<from>input/properties/uri</from>
+				<to>uri</to>
+			</link>
+		</invoke>
+		<link id="760f81e9770f4b34b4a8700d81d255d7">
+			<from>result649b3a52dd1347b69f7490f3bef5f96c/components</from>
+			<to>components</to>
+		</link>
+	</map>
+	<for id="fa85536524ba4b0aaa39835523b8e5d0"
+		variable="data">
+		<switch id="70b608be1cae4057935959ac160c7e64"
+			query="input/properties/fileNameFormat">
+			<map id="9c8d7dd8b9fc46d1a865ebb5b079a245"
+				comment="Use the default filename"
+				label="null">
+				<link id="7e1f6564321d46cf9a3cb7af10ae7ae9">
+					<from>input/data[0]/contentName</from>
+					<to>fileName</to>
+				</link>
+			</map>
+			<map id="0061a08a74804c118b389189fc84d753">
+				<invoke id="78f7e91ca44f4b389c798f7bd5efa3a9"
+					resultName="result7b8b1e19a735469bbda5b6083b2177ac"
+					serviceId="nabu.frameworks.io.utils.replaceProperties"
+					x="249"
+					y="54">
+					<link id="f8da707c72dc4875a338f3b7dc4cb3a8">
+						<from>input/properties/fileNameFormat</from>
+						<to>value</to>
+					</link>
+					<link id="c52c3164262a4fa9b12457023412dc98">
+						<from>data/properties</from>
+						<to>properties</to>
+					</link>
+					<link id="63bf9485da0447f48fa2c1a35892843b">
+						<from>input/data[0]/contentName</from>
+						<to>additional[0]/value</to>
+					</link>
+					<link id="a554f4c16cdf44acacd83d615fdde9f7"
+						fixedValue="true">
+						<from>originalFileName</from>
+						<to>additional[0]/key</to>
+					</link>
+				</invoke>
+				<link id="18fe3d3bb7cb4007aca4eab0c4e55f36">
+					<from>result7b8b1e19a735469bbda5b6083b2177ac/value</from>
+					<to>fileName</to>
+				</link>
+			</map>
+		</switch>
+		<map id="792a1a87f8ed4ebfbc357eb2204cafd4">
+			<invoke id="e4a6e94aadb740598f53c27092dcb04f"
+				resultName="resultb620d7b5d10f43bc9a93ff9192aad1e3"
+				serviceId="nabu.utils.String.join"
+				x="197"
+				y="234">
+				<link id="79f09033a3a64eb2935db5ab961b1130">
+					<from>components/path</from>
+					<to>parts[0]</to>
+				</link>
+				<link id="d0524eeb41e249aa8e1d6442cb5bf845">
+					<from>fileName</from>
+					<to>parts[1]</to>
+				</link>
+				<link id="d8ad24cef7f94d61be27000dd79f46f5"
+					fixedValue="true">
+					<from>/</from>
+					<to>separator</to>
+				</link>
+			</invoke>
+			<link id="50aa6ba56e414491aa151a2953335b09">
+				<from>resultb620d7b5d10f43bc9a93ff9192aad1e3/string</from>
+				<to>path</to>
+			</link>
+		</map>
+		<map id="5c7f4ff650814b7fa0110d93315b427b">
+			<invoke id="b002f36cc6764b46bcb1674d62a297b1"
+				invocationOrder="1"
+				resultName="resultb2eab3c36020457998606aa4a2f28fb5"
+				serviceId="nabu.protocols.ftp.client.Services.write"
+				x="586"
+				y="183">
+				<link id="40d91df2db0d41928f1810a816ccc6c3">
+					<from>connection/connectionId</from>
+					<to>connectionId</to>
+				</link>
+				<link id="71ad85fba7f04e13a001448d02120f8a">
+					<from>path</from>
+					<to>uri</to>
+				</link>
+				<link id="1aacc5dc91a4483f95dc12db93994374">
+					<from>resulte24e59f80d90467db0bd1a1d710cd7e0/stream</from>
+					<to>stream</to>
+				</link>
+			</invoke>
+			<invoke id="44b31a9c8b80480c841626aa00688f1e"
+				resultName="resulte24e59f80d90467db0bd1a1d710cd7e0"
+				serviceId="nabu.frameworks.datastore.Services.retrieve"
+				x="226"
+				y="98">
+				<link id="f6a1b06a02e84b219c44a199d4725e26">
+					<from>data/uri</from>
+					<to>uri</to>
+				</link>
+			</invoke>
+		</map>
+		<query>input/data</query>
+	</for>
+</sequence>

@@ -1,0 +1,115 @@
+<sequence id="5051a94a-1378-42aa-8b14-dc1f0a9bf246">
+	<map id="8ec35fce-4dba-47c6-88dd-07eec5911ff1"
+		comment="All files"
+		label="input/properties/fileRegex == null">
+		<link id="f6da820a-4afc-4f8d-93fb-9cea63172559"
+			fixedValue="true">
+			<from>.*</from>
+			<to>input/properties/fileRegex</to>
+		</link>
+	</map>
+	<map id="c2b99f9a6bf3420588ed7d199586abce">
+		<invoke id="376b0e0931c24321a8bb0c09654bf952"
+			resultName="result42d714921bec4aa6968a657463e4d0c1"
+			serviceId="nabu.protocols.ftp.client.Services.connect"
+			x="89"
+			y="67">
+			<link id="69f2710e213b4f5ea770ef0216981253">
+				<from>input/properties/host</from>
+				<to>host</to>
+			</link>
+			<link id="7f732002deb2457ab6157187e99cb2df">
+				<from>input/properties/port</from>
+				<to>port</to>
+			</link>
+			<link id="8fd79b26de6e4cb0b7f04163307c653a">
+				<from>input/properties/username</from>
+				<to>username</to>
+			</link>
+			<link id="03be816ff6784b28bd75caa8675b1bcf">
+				<from>input/properties/password</from>
+				<to>password</to>
+			</link>
+		</invoke>
+		<link id="269328ed24544fd4adbe346630eb0352">
+			<from>result42d714921bec4aa6968a657463e4d0c1/connection</from>
+			<to>connection</to>
+		</link>
+	</map>
+	<map id="db97679e-9cfd-402f-b4a8-d9873f36df0a">
+		<invoke id="346249e104a545dea3f468c2b2d21158"
+			resultName="resultdb39a4ed874344448f23d75ff5d4744b"
+			serviceId="nabu.protocols.ftp.client.Services.list"
+			x="127"
+			y="176">
+			<link id="d892a71ca49541ceb50f354dade1f8a4">
+				<from>connection/connectionId</from>
+				<to>connectionId</to>
+			</link>
+			<link id="f6b78748c82d470797c11d68acbea389">
+				<from>input/properties/fileRegex</from>
+				<to>regex</to>
+			</link>
+			<link id="7027921304cf455d8eaeb49ac6e109fc">
+				<from>input/properties/uri</from>
+				<to>uri</to>
+			</link>
+		</invoke>
+		<link id="20c3d0b7e5da480783ca066c3a46db50">
+			<from>resultdb39a4ed874344448f23d75ff5d4744b/entries</from>
+			<to>files</to>
+		</link>
+	</map>
+	<for id="b5cafddc-f846-40fb-83fb-951887d82ef3"
+		index="index"
+		into="output/results"
+		variable="file">
+		<map id="8cac6dcc-af60-4329-a6e0-7216f4eb3ef1">
+			<invoke id="7139b553d4e7437d8bfb3f9dff5e374d"
+				resultName="resultc05ff277f4944531bf17bed6cc09aef2"
+				serviceId="nabu.protocols.ftp.client.providers.io.in.file.singleRead"
+				x="269"
+				y="69">
+				<link id="28bd93773dac4a6aaff3b9bbbad7aab5">
+					<from>connection/connectionId</from>
+					<to>properties/connectionId</to>
+				</link>
+				<link id="153ebd15f9424d4fa691b076b4cc8f53">
+					<from>file/uri</from>
+					<to>properties/uri</to>
+				</link>
+				<link id="d2f93a58076142af9b34d4434fea4bae">
+					<from>input/context</from>
+					<to>context</to>
+				</link>
+				<link id="bc74bcc6a99f42e5ab751a83a5d05dac">
+					<from>input/properties/deleteOriginal</from>
+					<to>properties/deleteOriginal</to>
+				</link>
+				<link id="e3daf724f74a4ab4bb47c74e34bac997">
+					<from>input/properties/processedExtension</from>
+					<to>properties/processedExtension</to>
+				</link>
+			</invoke>
+			<link id="e964870d96934d3bb183522e1a666100">
+				<from>resultc05ff277f4944531bf17bed6cc09aef2/results</from>
+				<to>output/results</to>
+			</link>
+		</map>
+		<sequence id="f2683655-2c5a-4959-bd59-1ae71f8e27ee"
+			label="input/limit != null &amp;&amp; index &gt;= input/limit - 1">
+			<map id="d14d900a-df58-4a27-81fc-0e37e1016d41"
+				comment="Set limited output">
+				<link id="e2b1e891-0561-4ddc-99dd-47b95d375083"
+					fixedValue="true">
+					<from>true</from>
+					<to>output/limited</to>
+				</link>
+			</map>
+			<break id="dd9954fc-97a4-4998-84cf-7c6b1824bf43">
+				<count>2</count>
+			</break>
+		</sequence>
+		<query>files</query>
+	</for>
+</sequence>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<node artifactManager="be.nabu.eai.module.services.vm.VMServiceManager" created="2018-07-03T15:43:10.190+02:00" lastModified="2025-12-01T15:30:08.771+01:00" leaf="true" version="41">
+    <environmentId>ares</environmentId>
+    <hidden>false</hidden>
+    <locked>false</locked>
+    <properties/>
+    <references>nabu.protocols.ftp.client.providers.io.in.file.singleRead</references>
+    <references>nabu.protocols.ftp.client.providers.io.in.directory.properties</references>
+    <references>nabu.protocols.ftp.client.Services.connect</references>
+    <references>nabu.utils.types.UriComponents</references>
+    <references>nabu.protocols.ftp.client.types.FTPConnectionDetails</references>
+    <references>nabu.protocols.ftp.client.providers.io.in.file.fileResult</references>
+    <references>nabu.frameworks.io.specs.transferResult</references>
+    <references>nabu.frameworks.io.specs.transferIn</references>
+    <references>java.lang.Long</references>
+    <references>nabu.protocols.ftp.client.Services.list</references>
+    <references>java.lang.Boolean</references>
+    <references>java.lang.Object</references>
+    <references>java.lang.String</references>
+    <references>be.nabu.libs.resources.api.ResourceProperties</references>
+</node>
